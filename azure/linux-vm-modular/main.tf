@@ -33,3 +33,15 @@ module "nic" {
     subnet_id = module.subnet.subnet_id
     
 }
+
+module "linux_vm" {
+    source = "./modules/linux_vm"
+    vm_name = var.vm_name
+    vm_size = var.vm_size
+    location = var.location
+    resource_group_name = module.resource_group.rg_name
+    network_interface_ids = module.nic.nic
+    admin_username = var.admin_username
+    admin_password = var.admin_password
+
+}
